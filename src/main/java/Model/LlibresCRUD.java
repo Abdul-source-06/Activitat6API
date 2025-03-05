@@ -53,7 +53,6 @@ public class LlibresCRUD {
 
 			System.out.println("Response Body: " + responseBody);
 			// Parseamos la respuesta JSON
-			if (responseBody.trim().startsWith("[")) {
 				JSONArray jsonArray = new JSONArray(responseBody);
 				for (int i = 0; i < jsonArray.length(); i++) {
 					JSONObject jsonObject = jsonArray.getJSONObject(i);
@@ -72,9 +71,6 @@ public class LlibresCRUD {
 					llibre.setCategories(categories);
 					llibresList.add(llibre);
 				}
-			}else {
-				System.err.println("La respuesta no es un JSONArray. Respuesta: " + responseBody);
-			}
 		} catch (IOException | InterruptedException e) {
 			e.printStackTrace();
 		} catch (URISyntaxException e) {
