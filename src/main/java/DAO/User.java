@@ -1,5 +1,7 @@
 package DAO;
 
+import org.json.JSONObject;
+
 public class User {
 	private String name;
 	private String gmail;
@@ -35,5 +37,13 @@ public class User {
 
 	public void setPaswd(String paswd) {
 		this.paswd = paswd;
+	}
+
+	public String toJson() {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("name", this.name);
+		jsonObject.put("gmail", this.gmail);
+		jsonObject.put("password", this.paswd);
+		return jsonObject.toString();
 	}
 }

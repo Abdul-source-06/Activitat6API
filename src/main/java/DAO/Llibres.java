@@ -1,9 +1,10 @@
 
 package DAO;
 
-import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
-import org.bson.Document;
+
+import org.json.JSONObject;
 
 public class Llibres {
 
@@ -71,15 +72,14 @@ public class Llibres {
 		this.descripcio = descripcio;
 	}
 
-	// Convertir un Llibre a un Document de MongoDB
-	public Document toDocument() {
-		return new Document().append("titol", titol).append("autor", autor).append("anyPublicacio", any_Publicacio)
-				.append("descripcio", descripcio).append("categories", categories);
-	}
+	public String toJson() {
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("Autor", this.autor);
+		jsonObject.put("Titol", this.titol);
+		jsonObject.put("Any_publicacio", this.any_Publicacio);
+		jsonObject.put("Categories", this.categories);
+		jsonObject.put("Descripcio", this.descripcio);
 
-	@Override
-	public String toString() {
-		return "Llibre: " + "{Titol='" + titol + '\'' + ", Autor='" + autor + '\'' + ", Any de Publicacio="
-				+ any_Publicacio + ", Descripcio='" + descripcio + '\'' + ", Categories=" + categories + "}";
+		return jsonObject.toString();
 	}
 }
